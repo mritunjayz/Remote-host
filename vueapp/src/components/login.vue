@@ -2,16 +2,16 @@
   <div >
     <h2>Login Form</h2>
 <div id="login">
-<form>
+<form id='form'>
 
   <div class="container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Username@address" name="uname" required>
+    <input type="text" placeholder="Username@address" name="uname" v-model='username' required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw" v-model='password' required>
         
-    <button type="submit">Login</button>
+    <button @click='login' >Login</button>
     <label>
       <input type="checkbox" checked="false" name="remember"> Remember me
     </label>
@@ -33,7 +33,22 @@ export default {
           username:'',
           password:''
       }
-  }
+  },
+methods: {
+  login(){
+    //temporary auth flow
+if(this.username==this.password){
+  this.$store.dispatch('auth',{username:this.username,password:this.password});
+  this.$router.push({ path: '/base' })
+}
+  },
+
+},
+mounted() {
+  document.getElementById("form").addEventListener("click", function(event){
+  event.preventDefault()
+});
+},
 }
 </script>
 
