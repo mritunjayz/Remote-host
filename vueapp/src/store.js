@@ -11,6 +11,7 @@ export default new Vuex.Store({
   ],
   state: {
 islogged:'false',
+host:null,
 username:null,
 password:null
   },
@@ -19,12 +20,14 @@ password:null
 auth (state,data){
   if(data.username && data.password){
     state.islogged=true;
+    state.host=data.host
     state.username=data.username;
     state.password=data.password;
   }
 },
 logout(state){
   state.islogged=false;
+  state.host=null;
   state.username=null;
   state.password=null;
 }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import base from './views/base.vue'
-import example from './views/example.vue'
+import directory from './views/directory.vue'
 import store from './store.js'
 
 Vue.use(Router)
@@ -21,8 +21,8 @@ var router = new Router({
       component: base,
       children:[{
         path: '',
-      name: 'example',
-      component:example
+      name: 'directory',
+      component:directory
       }]
     },
 

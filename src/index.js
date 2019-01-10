@@ -7,8 +7,7 @@ import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
-//import sh from 'shelljs';
-//import '../vueserve.js'
+import '../vueserve.js'
 let app = express();
 app.server = http.createServer(app);
 
@@ -16,9 +15,12 @@ app.server = http.createServer(app);
 app.use(morgan('dev'));
 
 // 3rd party middleware
-app.use(cors({
-	exposedHeaders: config.corsHeaders
-}));
+app.use(cors());
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+  });
 
 app.use(bodyParser.json({
 	limit : config.bodyLimit

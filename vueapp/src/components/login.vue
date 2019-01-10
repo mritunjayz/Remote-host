@@ -5,11 +5,14 @@
 <form id='form'>
 
   <div class="container">
+    <label for="host"><b>Host</b></label>
+    <input type="text" placeholder="Host" name="host" v-model='host' required>
+
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Username@address" name="uname" v-model='username' required>
+    <input type="text" placeholder="Username" name="uname" v-model='username' required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" v-model='password' required>
+    <input type="text" placeholder="Enter Password" name="psw" v-model='password' required>
         
     <button @click='login' >Login</button>
     <label>
@@ -25,22 +28,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: 'login',
   data(){
       return{
           username:'',
-          password:''
+          password:'',
+          host:''
       }
   },
 methods: {
   login(){
-    //temporary auth flow
-if(this.username==this.password){
-  this.$store.dispatch('auth',{username:this.username,password:this.password});
+axios.post(`http://localhost:8000/api/login`, {host:this.host,username:this.username,key:this.password})
+.then(data => {
+
+  if(data.data==='logged' && data.status===200){
+      this.$store.dispatch('auth',{host:this.host,username:this.username,
+      password:this.password
+  });
+
   this.$router.push({ path: '/base' })
-}
+
+  }
+}).catch(err => {
+})
   },
 
 },
