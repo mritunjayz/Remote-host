@@ -34,6 +34,7 @@
     "express": "^4.13.3",
     "js-cookie": "^2.2.0",
     "morgan": "^1.8.0",
+    "node-ssh": "^5.1.2",
     "resource-router-middleware": "^0.6.0",
     "shelljs": "^0.8.3",
     "vuex-persistedstate": "^2.5.4"

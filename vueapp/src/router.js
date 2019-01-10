@@ -3,10 +3,11 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import base from './views/base.vue'
 import example from './views/example.vue'
+import store from './store.js'
 
 Vue.use(Router)
 
-export default new Router({
+var router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -27,3 +28,16 @@ export default new Router({
 
   ]
 })
+router.beforeEach((to, from, next) => {
+  if(to.path != '/') {
+  if(store.state.islogged) { 
+    next();
+} else {
+    next('/');
+}
+} else {
+next();
+}
+  
+})
+export default router

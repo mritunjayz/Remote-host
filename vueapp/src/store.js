@@ -22,11 +22,19 @@ auth (state,data){
     state.username=data.username;
     state.password=data.password;
   }
+},
+logout(state){
+  state.islogged=false;
+  state.username=null;
+  state.password=null;
 }
   },
   actions: {
 auth({commit},data){
   commit('auth',data);
+},
+logout({commit}){
+commit('logout');
 }
   }
 })

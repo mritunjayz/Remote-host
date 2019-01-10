@@ -5,6 +5,9 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+
+console.log("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll",store.state.islogged)
+
 new Vue({
   router,
   store,
