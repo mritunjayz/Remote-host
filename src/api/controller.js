@@ -7,11 +7,11 @@ let controller= {};
 
  controller.login = function (logincredentials){
     return new Promise((resolve, reject) => {
-        console.log('login controller 0')
+        console.log(logincredentials)
     ssh.connect({
-        host:'ec2-13-126-73-149.ap-south-1.compute.amazonaws.com',
-    username: 'ec2-user',
-    privateKey:'/home/mohit/portfolio.pem'
+        host:logincredentials.host,
+    username: logincredentials.username,
+    privateKey:logincredentials.key
 }).then( function()  {
     console.log('login controller 1')
     resolve('logged')
