@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import http from 'http';
 import express from 'express';
 import cors from 'cors';
@@ -7,7 +8,7 @@ import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
-import '../vueserve.js'
+//import '../vueserve.js'
 let app = express();
 app.server = http.createServer(app);
 
