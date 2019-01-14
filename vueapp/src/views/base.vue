@@ -37,15 +37,14 @@ export default {
     }
   },
   mounted() {
-    if(!this.$route.params.path){
-      console.log('singh');
-      this.$router.push({ name: 'directory', params: { path: "home/ec2-user"} })
+   if(!this.$route.params.path){
+      this.$router.push({ name: 'directory', params: { path: "/"} })
     }
   },
   watch: {
     '$route' (to, from) {
 		if(!this.$route.params.path){
-      this.$router.push({ name: 'directory', params: { path: "home/ec2-user"} })
+      this.$router.push({ name: 'directory', params: { path: "/"} })
     	}
   }
   }
