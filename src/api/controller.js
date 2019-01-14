@@ -1,5 +1,4 @@
 import ssh_node from 'node-ssh'
-import { promises } from 'fs';
 
 let ssh = new ssh_node();
 
@@ -19,8 +18,16 @@ let controller= {};
 }) 
 }
 
+controller.logout = function () {
+    return new Promise ((resolve, reject) => { 
+    ssh = new ssh_node();
+    resolve('done')
+    })
+
+}
 
 controller.directorylist = function (path) {
+    console.log(path)
     return new Promise ((resolve, reject) => {
         ssh.execCommand(`cat ${path}`, { cwd:'' }).then(function(result) {
             if(result.stdout){
@@ -48,7 +55,11 @@ function ondirectory(path){
     ssh.execCommand(`ls ${path}`, { cwd:'' }).then(function(result) {
         if(result.stdout){
           let li = result.stdout.split('\n')  
-          resolve(li)
+          let responsedata = {
+              type:'Directory',
+              data:li
+          }
+          resolve(responsedata)
         }
         else if (result.stderr){
            reject(result.stderr)
@@ -62,7 +73,12 @@ function ondirectory(path){
 function onfile (path) {
     return new Promise ((resolve, reject) => {
         ssh.getFile('/home/mohit/temp', `${path}`).then(function(data) {
-            resolve(data)
+            let responsedata = {
+                type : 'file',
+                data: 'data'
+            }
+            resolve(responsedata)
+            console.log('lalan')
           }, function(error) {
             reject(error)
           })

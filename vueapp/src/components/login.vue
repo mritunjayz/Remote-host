@@ -48,8 +48,8 @@ axios.post(`http://localhost:8000/api/login`, {host:this.host,username:this.user
       this.$store.dispatch('auth',{host:this.host,username:this.username,
       password:this.password
   });
-
-  this.$router.push({ path: '/base' })
+console.log('loging param path')
+  this.$router.push({ name: 'directory', params: { path: "home/ec2-user"} })
 
   }
 }).catch(err => {

@@ -20,7 +20,7 @@ var router = new Router({
       path: '/base',
       component: base,
       children:[{
-        path: '',
+        path: 'files/:path',
       name: 'directory',
       component:directory
       }]
@@ -28,6 +28,7 @@ var router = new Router({
 
   ]
 })
+
 router.beforeEach((to, from, next) => {
   if(to.path != '/') {
   if(store.state.islogged) { 
@@ -38,6 +39,18 @@ router.beforeEach((to, from, next) => {
 } else {
 next();
 }
-  
 })
+
+router.beforeEach((to, from, next) => {
+  if(to.path == '/') {
+  if(store.state.islogged) { 
+    next('/base');
+} else {
+    next();
+}
+} else {
+next();
+}
+})
+
 export default router

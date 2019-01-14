@@ -5,6 +5,8 @@ import controller from './controller.js'
 
 
 router.post('/',(req,res) =>{
+    console.log(req.body.path,'front call path')
+
 controller.directorylist(req.body.path).then((data) => {
     res.send(data);
 }).catch(err => {

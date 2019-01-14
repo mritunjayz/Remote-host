@@ -13,7 +13,8 @@ export default new Vuex.Store({
 islogged:'false',
 host:null,
 username:null,
-password:null
+password:null,
+path:'home/'
   },
   mutations: {
     //temporary auth flow
@@ -30,6 +31,9 @@ logout(state){
   state.host=null;
   state.username=null;
   state.password=null;
+},
+path(state,data){
+  state.path = data.path
 }
   },
   actions: {
@@ -38,6 +42,9 @@ auth({commit},data){
 },
 logout({commit}){
 commit('logout');
+},
+path({commit}){
+  commit('path')
 }
   }
 })

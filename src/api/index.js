@@ -2,6 +2,8 @@ import { version } from '../../package.json';
 import { Router } from 'express';
 import structure from './directoryroute.js'
 import login from './loginroute.js'
+import logout from './logoutroute.js'
+
 
 export default ({ config, db }) => {
 	let api = Router();
@@ -14,6 +16,9 @@ export default ({ config, db }) => {
 	api.use('/list', structure);
 
 	api.use('/login', login)
+
+	api.use('/logout', logout)
+
 
 	return api;
 }

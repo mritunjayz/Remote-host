@@ -21,14 +21,33 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   name: 'baseland',
   methods:{
     logout(){
-      this.$store.dispatch('logout');
-      this.$router.push({ path: '/' })
+          axios.get(`http://localhost:8000/api/logout`).then(() => {
+           this.$store.dispatch('logout');
+           this.$router.push({ path: '/' })
+        })
+        this.$store.dispatch('logout');
+           this.$router.push({ path: '/' })
+
     }
+  },
+  mounted() {
+    if(!this.$route.params.path){
+      console.log('singh');
+      this.$router.push({ name: 'directory', params: { path: "home/ec2-user"} })
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+		if(!this.$route.params.path){
+      this.$router.push({ name: 'directory', params: { path: "home/ec2-user"} })
+    	}
+  }
   }
 }
 </script>
