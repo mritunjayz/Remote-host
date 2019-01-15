@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import base from './views/base.vue'
 import directory from './views/directory.vue'
 import store from './store.js'
+import mo from './components/test.vue'
 
 Vue.use(Router)
 
@@ -15,6 +16,11 @@ var router = new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/test',
+      name: 'mo',
+      component: mo
     },
     {
       path: '/base',

@@ -73,22 +73,33 @@ methods:{
         filerender(){
           let s = '/' + this.$route.params.path;
             axios.post('http://localhost:8000/api/list',{path:s}).then((res) => {
+              console.log(res.data)
             this.datac = res.data.data;
             this.length = this.datac.length;
             this.length = this.length/6;
             this.length = Math.ceil(this.length)
           })
            .catch(err =>{
-            throw err
+      
+             this.$store.dispatch('logout');
+             this.$router.push({ path: '/'})
+             //this.logout();
+             throw err
             })
         },
-        fileclicked(subpath){
-          console.log('fileclicked',subpath)
-          let sub = this.$route.params.path +subpath+'/'
+        async fileclicked(subpath){
+
+          let promise = new Promise((resolve, reject) => {
+            console.log('fileclicked',subpath)
+        let sub = this.$route.params.path +subpath+'/'
                     console.log('fileclicked',sub)
 
-          this.$router.push({ name: 'directory', params: { path: sub} })
+       this.$router.push({ name: 'directory', params: { path: sub} })
           this.filerender();
+          })
+           
+           await promise;
+
         }
 
     },
