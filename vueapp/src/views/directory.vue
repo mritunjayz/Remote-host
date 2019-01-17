@@ -36,21 +36,23 @@
       <h5>{{datac[(index*6)-1]}}</h5>
     </div>   
     </div>
-    
-
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import editor from '../components/test2.vue'
 
 export default {
+  components:{
+    editor
+  },
 data (){
 return{
   basePath:'',
   datac:[],
-  d:'kkkk',
+  d:'kkkkddddddddddddddddd',
   a:'nnn',
   length:''
 }
@@ -71,31 +73,46 @@ methods:{
                 }
         },
         filerender(){
-          let s = '/' + this.$route.params.path;
+          let s = this.$route.params.path;
             axios.post('http://localhost:8000/api/list',{path:s}).then((res) => {
-              console.log(res.data)
+              console.log(res.data,"success also called")
+          if(res.data.type!=='file'){
             this.datac = res.data.data;
             this.length = this.datac.length;
             this.length = this.length/6;
             this.length = Math.ceil(this.length)
-          })
-           .catch(err =>{
-      
+          }
+          else{
+            //console.log(res.data.content,"inside success also called")
+            this.$store.dispatch('filedata',{filedata:res.data.content});
+            this.$router.push({ name: 'mo'})
+            //console.log(this.$store.state.islogged,"dispacted")
+          }
+          }).catch(err =>{
+      //console.log('why error', typeof(err))
              this.$store.dispatch('logout');
              this.$router.push({ path: '/'})
-             //this.logout();
+             this.logout();
              throw err
             })
         },
         async fileclicked(subpath){
 
           let promise = new Promise((resolve, reject) => {
-            console.log('fileclicked',subpath)
-        let sub = this.$route.params.path +subpath+'/'
-                    console.log('fileclicked',sub)
+            //console.log('fileclicked',subpath)
+            let sub;
+            if(this.$route.params.path==='/'){
+              sub = this.$route.params.path + subpath
+             // console.log("after loging",sub)
+            }
+            else {
+              sub = this.$route.params.path +'/'+ subpath
+              //console.log("else loging",sub)
+            }
+                    //console.log('fileclicked',sub)
 
        this.$router.push({ name: 'directory', params: { path: sub} })
-          this.filerender();
+         // this.filerender();
           })
            
            await promise;
@@ -107,8 +124,10 @@ methods:{
     '$route' (to, from) {
 		this.filerender();
   }
+  },
+beforeDestroy: function(){
+    console.log('DESTROYYYY!!!',window.location.href)
   }
-
 }
 </script>
 

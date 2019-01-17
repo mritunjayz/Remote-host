@@ -14,7 +14,8 @@ islogged:'false',
 host:null,
 username:null,
 password:null,
-path:'home/'
+path:'home/',
+filedata:null,
   },
   mutations: {
     //temporary auth flow
@@ -34,6 +35,10 @@ logout(state){
 },
 path(state,data){
   state.path = data.path
+},
+filedata(state,data){
+  console.log(data,"stroreeeeeeeeeeeeeee")
+  state.filedata = data.filedata
 }
   },
   actions: {
@@ -45,6 +50,9 @@ commit('logout');
 },
 path({commit}){
   commit('path')
+},
+filedata({commit},data){
+  commit('filedata',data)
 }
   }
 })

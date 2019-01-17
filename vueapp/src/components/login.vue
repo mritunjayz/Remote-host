@@ -48,7 +48,7 @@ axios.post(`http://localhost:8000/api/login`, {host:this.host,username:this.user
       this.$store.dispatch('auth',{host:this.host,username:this.username,
       password:this.password
   });
-  this.$router.push({ name: 'directory', params: { path: ""} })
+  this.$router.push({ name: 'directory', params: { path: "/"} })
 
   }
 }).catch(err => {

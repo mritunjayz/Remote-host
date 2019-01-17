@@ -7,10 +7,10 @@
     <div class="col-sm-4">
     </div>
     <div class="col-sm-4"> 
-      <h1>Welcome to Remote host.
+      <h3>Welcome to Remote host.
       <br>
         Logged in as
-      <span class="colour">{{$store.state.username}}</span></h1>
+      <span class="colour">{{$store.state.host}}</span></h3>
     </div>
     <div class="col-sm-4 colour" @click='logout'> 
       <h3 class="po">Logout</h3>
@@ -36,18 +36,18 @@ export default {
 
     }
   },
-  mounted() {
+  /*mounted() {
    if(!this.$route.params.path){
-      this.$router.push({ name: 'directory', params: { path: "/"} })
+      //this.$router.push({ name: 'directory', params: { path: "/"} })
     }
   },
   watch: {
     '$route' (to, from) {
 		if(!this.$route.params.path){
-      this.$router.push({ name: 'directory', params: { path: "/"} })
+      //this.$router.push({ name: 'directory', params: { path: "/"} })
     	}
   }
-  }
+  }*/
 }
 </script>
 

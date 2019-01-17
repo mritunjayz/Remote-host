@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 import base from './views/base.vue'
 import directory from './views/directory.vue'
 import store from './store.js'
-import mo from './components/test.vue'
+import mo from './components/test2.vue'
 
 Vue.use(Router)
 
@@ -18,24 +18,24 @@ var router = new Router({
       component: Home
     },
     {
-      path: '/test',
-      name: 'mo',
-      component: mo
-    },
-    {
       path: '/base',
       component: base,
       children:[{
         path: 'files/:path',
       name: 'directory',
-      component:directory
+      component:directory,
+      },
+      {
+        path: 'test',
+        name: 'mo',
+        component: mo
       }]
     },
 
   ]
 })
 
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
   if(to.path != '/') {
   if(store.state.islogged) { 
     next();
@@ -57,6 +57,6 @@ router.beforeEach((to, from, next) => {
 } else {
 next();
 }
-})
+})*/
 
 export default router

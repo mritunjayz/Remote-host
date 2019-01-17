@@ -1,4 +1,5 @@
 import ssh_node from 'node-ssh'
+import fs from 'fs'
 
 let ssh = new ssh_node();
 
@@ -32,8 +33,10 @@ controller.directorylist = function (path) {
         ssh.execCommand(`cat ${path}`, { cwd:'' }).then(function(result) {
             if(result.stdout){
                 onfile(path).then(data => {
+                    console.log('no error')
                     resolve(data)
                 }).catch(err => {
+                    
                     reject(err)
                 })
             }
@@ -74,10 +77,14 @@ function onfile (path) {
     return new Promise ((resolve, reject) => {
         ssh.getFile('/home/mohit/temp', `${path}`).then(function(data) {
             let responsedata = {
-                type : 'file',
-                data: 'data'
+                type : 'file'
             }
-            resolve(responsedata)
+            fs.readFile('/home/mohit/temp', 'utf8', function(err, contents) {
+               // console.log(contents);
+               responsedata.content=contents
+                resolve(responsedata)
+            });s
+            
             console.log('lalan')
           }, function(error) {
             reject(error)
