@@ -86,7 +86,7 @@ methods:{
           }
           else{
             this.$store.dispatch('filedata',{filedata:res.data.content});
-            this.$router.push({ name: 'mo'})
+            this.$router.push({ name: 'editor'})
           }
           }).catch(err =>{
              this.$store.dispatch('logout');
@@ -109,7 +109,7 @@ methods:{
             axios.post('http://localhost:8000/api/list',{path:sub}).then((res) => {
               if(res.data.type==='file'){
                 this.$store.dispatch('filedata',{filedata:res.data.content});
-            this.$router.push({ name: 'mo'})
+            this.$router.push({ name: 'editor'})
               }
               else{
                 this.$router.push({ name: 'directory', params: { path: sub} })

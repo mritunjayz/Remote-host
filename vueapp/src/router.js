@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 import base from './views/base.vue'
 import directory from './views/directory.vue'
 import store from './store.js'
-import mo from './components/test2.vue'
+import editor from './components/test2.vue'
 
 Vue.use(Router)
 
@@ -26,9 +26,9 @@ var router = new Router({
       component:directory,
       },
       {
-        path: 'test',
-        name: 'mo',
-        component: mo
+        path: 'editor',
+        name: 'editor',
+        component: editor
       }]
     },
 
