@@ -35,7 +35,7 @@ var router = new Router({
   ]
 })
 
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   if(to.path != '/') {
   if(store.state.islogged) { 
     next();
@@ -47,14 +47,17 @@ next();
 }
 })
 
-router.beforeEach((to, from, next) => {
-  if(to.path == '/') {
-  if(store.state.islogged) { 
-    next('/base');
-} else {
-    next();
-}
-} else {
+/*router.beforeEach((to, from, next) => {
+  if(from.path==='/base/test'){
+    console.log(store.state.previouspath,'router')
+    //router.go(-1)
+    router.push({ name: 'directory', params: { path: "/"} })
+    //next('/base/files/')
+    //console.log(to,from,"Directory watch from test router")
+  } else {
+    console.log(store.state.previouspath,'router')
+    //console.log(window.history.back)
+    //console.log(to,from,"Directory else con test router")
 next();
 }
 })*/

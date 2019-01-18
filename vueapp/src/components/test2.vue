@@ -12,8 +12,6 @@
 
 <script>
 import MonacoEditor from 'vue-monaco'
-//import fs from './require.js';
-//console.log(fs)
 
 export default {
   components: {
@@ -22,68 +20,7 @@ export default {
 
   data() {
     return {
-      code:`var requirejs, require, define;
-(function (global, setTimeout) {
-    var req, s, head, baseElement, dataMain, src,
-        interactiveScript, currentlyAddingScript, mainScript, subPath,
-        version = '2.3.6',
-        commentRegExp = /\/\*[\s\S]*?\*\/|([^:"'=]|^)\/\/.*$/mg,
-        cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
-        jsSuffixRegExp = /\.js$/,
-        currDirRegExp = /^\.\//,
-        op = Object.prototype,
-        ostring = op.toString,
-        hasOwn = op.hasOwnProperty,
-        isBrowser = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document),
-        isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
-        //PS3 indicates loaded and complete, but need to wait for complete
-        //specifically. Sequence is 'loading', 'loaded', execution,
-        // then 'complete'. The UA check is unfortunate, but not sure how
-        //to feature test w/o causing perf issues.
-        readyRegExp = isBrowser && navigator.platform === 'PLAYSTATION 3' ?
-                      /^complete$/ : /^(complete|loaded)$/,
-        defContextName = '_',
-        //Oh the tragedy, detecting opera. See the usage of isOpera for reason.
-        isOpera = typeof opera !== 'undefined' && opera.toString() === '[object Opera]',
-        contexts = {},
-        cfg = {},
-        globalDefQueue = [],
-        useInteractive = false;
-
-    //Could match something like ')//comment', do not lose the prefix to comment.
-    function commentReplace(match, singlePrefix) {
-        return singlePrefix || '';
-    }
-
-    function isFunction(it) {
-        return ostring.call(it) === '[object Function]';
-    }
-
-    function isArray(it) {
-        return ostring.call(it) === '[object Array]';
-    }
-
-    /**
-     * Helper function for iterating over an array. If the func returns
-     * a true value, it will break out of the loop.
-     */
-    function each(ary, func) {
-        if (ary) {
-            var i;
-            for (i = 0; i < ary.length; i += 1) {
-                if (ary[i] && func(ary[i], i, ary)) {
-                    break;
-                }
-            }
-        }
-    }
-
-    /**
-     * Helper function for iterating over an array backwards. If the func
-     * returns a true value, it will break out of the loop.
-     */
-    function eachReverse(ary, func) {
-        if (ary) {`,
+      code:``,
     language: 'javascript',
     theme: 'Visual Studio Dark',
     options: {
@@ -104,13 +41,20 @@ methods: {
 },
 mounted() {
   this.code = this.$store.state.filedata;
-  console.log(this.code,this.$store.filedata)
-  //this.updateCode()
+  document.getElementById("app").style.textAlign="";
+  document.getElementById("basec").style.textAlign="center";
+  if(!this.$store.state.islogged){
+  this.$router.push({ path: '/'})
+  }
 },
+beforeDestroy: function(){
+    document.getElementById("app").style.textAlign="center";
+  document.getElementById("basec").style.textAlign="";
+  }
 }
 </script>
 
-<style scoped>
+<style>
 .editor {
   width: 900px;
   height: 800px;

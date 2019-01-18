@@ -14,7 +14,7 @@ islogged:'false',
 host:null,
 username:null,
 password:null,
-path:'home/',
+previouspath:'/',
 filedata:null,
   },
   mutations: {
@@ -33,11 +33,11 @@ logout(state){
   state.username=null;
   state.password=null;
 },
-path(state,data){
-  state.path = data.path
+previouspath(state,data){
+  //console.log('called store',data.previouspath,state.previouspath)
+  state.previouspath = data.previouspath
 },
 filedata(state,data){
-  console.log(data,"stroreeeeeeeeeeeeeee")
   state.filedata = data.filedata
 }
   },
@@ -48,8 +48,8 @@ auth({commit},data){
 logout({commit}){
 commit('logout');
 },
-path({commit}){
-  commit('path')
+previouspath({commit},data){
+  commit('previouspath',data)
 },
 filedata({commit},data){
   commit('filedata',data)

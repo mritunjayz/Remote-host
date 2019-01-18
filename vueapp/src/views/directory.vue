@@ -58,13 +58,15 @@ return{
 }
 },
 mounted (){
+  if(!this.$route.params.path){
+      this.$router.push({ name: 'directory', params: { path: "/"} })
+    }
 this.filerender();
 },
 methods:{
   typecheck(name){
 //temporary type check
       if(name){
-        //console.log('typecheck:',name,name.indexOf("."),typeof(name))
         let r = name.indexOf(".");
         if(r===-1){
              return true;
@@ -75,21 +77,18 @@ methods:{
         filerender(){
           let s = this.$route.params.path;
             axios.post('http://localhost:8000/api/list',{path:s}).then((res) => {
-              console.log(res.data,"success also called")
           if(res.data.type!=='file'){
+            this.$store.dispatch('previouspath',{previouspath:this.$route.params.path})
             this.datac = res.data.data;
             this.length = this.datac.length;
             this.length = this.length/6;
             this.length = Math.ceil(this.length)
           }
           else{
-            //console.log(res.data.content,"inside success also called")
             this.$store.dispatch('filedata',{filedata:res.data.content});
             this.$router.push({ name: 'mo'})
-            //console.log(this.$store.state.islogged,"dispacted")
           }
           }).catch(err =>{
-      //console.log('why error', typeof(err))
              this.$store.dispatch('logout');
              this.$router.push({ path: '/'})
              this.logout();
@@ -97,22 +96,25 @@ methods:{
             })
         },
         async fileclicked(subpath){
-
+          this.$store.dispatch('previouspath',{previouspath:this.$route.params.path})
           let promise = new Promise((resolve, reject) => {
-            //console.log('fileclicked',subpath)
             let sub;
             if(this.$route.params.path==='/'){
               sub = this.$route.params.path + subpath
-             // console.log("after loging",sub)
             }
             else {
               sub = this.$route.params.path +'/'+ subpath
-              //console.log("else loging",sub)
             }
-                    //console.log('fileclicked',sub)
 
-       this.$router.push({ name: 'directory', params: { path: sub} })
-         // this.filerender();
+            axios.post('http://localhost:8000/api/list',{path:sub}).then((res) => {
+              if(res.data.type==='file'){
+                this.$store.dispatch('filedata',{filedata:res.data.content});
+            this.$router.push({ name: 'mo'})
+              }
+              else{
+                this.$router.push({ name: 'directory', params: { path: sub} })
+              }
+            })
           })
            
            await promise;
@@ -122,11 +124,18 @@ methods:{
     },
       watch: {
     '$route' (to, from) {
+      /*f(from.path==='/base/test'){
+        window.history.back();
+        console.log(to,from,"Directory watch from test file")
+      }
+      else{
+     this.filerender();
+     console.log(to,from,"Directory watch not from test file")
+      }*/
 		this.filerender();
   }
   },
 beforeDestroy: function(){
-    console.log('DESTROYYYY!!!',window.location.href)
   }
 }
 </script>

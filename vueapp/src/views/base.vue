@@ -3,7 +3,7 @@
   <div>
 
     </div>
-    <div class="row">
+    <div class="row" id="basec">
     <div class="col-sm-4">
     </div>
     <div class="col-sm-4"> 
@@ -36,18 +36,11 @@ export default {
 
     }
   },
-  /*mounted() {
-   if(!this.$route.params.path){
-      //this.$router.push({ name: 'directory', params: { path: "/"} })
-    }
+  mounted() {
+      document.getElementById("app").style.textAlign="center";
+      document.getElementById("basec").style.textAlign="";
+   
   },
-  watch: {
-    '$route' (to, from) {
-		if(!this.$route.params.path){
-      //this.$router.push({ name: 'directory', params: { path: "/"} })
-    	}
-  }
-  }*/
 }
 </script>
 

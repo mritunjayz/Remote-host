@@ -57,9 +57,18 @@ axios.post(`http://localhost:8000/api/login`, {host:this.host,username:this.user
 
 },
 mounted() {
+  console.log(this.$store.state.islogged)
   document.getElementById("form").addEventListener("click", function(event){
+    console.log("inside")
   event.preventDefault()
 });
+  if(this.$store.state.islogged){
+  this.$router.push({ name: 'directory', params: { path: "/"} })
+  }
+  else {
+    document.getElementById("app").style.textAlign="center";
+  document.getElementById("basec").style.textAlign="";
+  }
 },
 }
 </script>
@@ -126,5 +135,8 @@ span.psw {
     width:50%;
     position: relative;
   left: 25%;
+}
+#main{
+  text-align: center;
 }
 </style>
