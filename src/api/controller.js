@@ -53,6 +53,28 @@ controller.directorylist = function (path) {
     })
 }
 
+controller.editorsave = function (data) {
+    return new Promise ((resolve, reject) => {
+        fs.appendFile('./temp',data.filedata, function (err) {
+            if (err) {
+                reject(err)
+                throw err;
+            }
+            console.log('Saved!');
+
+            ssh.putFiles([{ local: './temp', remote: data.path }]).then(function() {
+                console.log("The File thing is done")
+                resolve("edited file success")
+              }, function(error) {
+                console.log("Something's wrong")
+                console.log(error)
+                reject(error);
+              })
+
+          });
+    })
+}
+
 function ondirectory(path){
     return new Promise ((resolve, reject) => {
     ssh.execCommand(`ls ${path}`, { cwd:'' }).then(function(result) {
@@ -75,18 +97,19 @@ function ondirectory(path){
 
 function onfile (path) {
     return new Promise ((resolve, reject) => {
-        ssh.getFile('/home/mohit/temp', `${path}`).then(function(data) {
+        ssh.getFile('./temp', `${path}`).then(function(data) {
             let responsedata = {
                 type : 'file'
             }
-            fs.readFile('/home/mohit/temp', 'utf8', function(err, contents) {
-               // console.log(contents);
+            fs.readFile('./temp', 'utf8', function(err, contents) {
+               //console.log(contents);
                responsedata.content=contents
                 resolve(responsedata)
             });s
             
             console.log('lalan')
           }, function(error) {
+              console.log(error)
             reject(error)
           })
     })

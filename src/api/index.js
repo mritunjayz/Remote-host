@@ -3,6 +3,7 @@ import { Router } from 'express';
 import structure from './directoryroute.js'
 import login from './loginroute.js'
 import logout from './logoutroute.js'
+import editorsave from './editorsaveroute'
 
 
 export default ({ config, db }) => {
@@ -18,6 +19,8 @@ export default ({ config, db }) => {
 	api.use('/login', login)
 
 	api.use('/logout', logout)
+
+	api.use('/editorsave', editorsave)
 
 
 	return api;
