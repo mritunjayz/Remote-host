@@ -52,28 +52,29 @@ data (){
 return{
   basePath:'',
   datac:[],
-  d:'kkkkddddddddddddddddd',
-  a:'nnn',
   length:''
 }
 },
 mounted (){
-  if(!this.$route.params.path){
-      this.$router.push({ name: 'directory', params: { path: "/"} })
-    }
-this.filerender();
-},
+     if(!this.$route.params.path){
+         this.$router.push({ name: 'directory', params: { path: "/"} })
+      }
+     this.filerender();
+   }
+, // mounted closed here
 methods:{
-  typecheck(name){
-//temporary type check
-      if(name){
-        let r = name.indexOf(".");
-        if(r===-1){
-             return true;
+     typecheck(name){
+         //temporary type check
+           if(name){
+             let r = name.indexOf(".");
+                if(r===-1){
+                   return true;
                    }
-        else return false;
-                }
-        },
+                else return false;
+                   }
+            }
+            ,
+
         filerender(){
           let s = this.$route.params.path;
             axios.post('http://localhost:8000/api/list',{path:s}).then((res) => {
@@ -94,7 +95,8 @@ methods:{
              this.logout();
              throw err
             })
-        },
+        }
+        ,
         async fileclicked(subpath){
           this.$store.dispatch('previouspath',{previouspath:this.$route.params.path})
           let promise = new Promise((resolve, reject) => {
@@ -109,19 +111,18 @@ methods:{
             axios.post('http://localhost:8000/api/list',{path:sub}).then((res) => {
               if(res.data.type==='file'){
                 this.$store.dispatch('filedata',{filedata:res.data.content});
+                this.$store.dispatch('previouspath', {previouspath:sub})
             this.$router.push({ name: 'editor'})
               }
               else{
                 this.$router.push({ name: 'directory', params: { path: sub} })
               }
             })
-          })
-           
+          }) 
            await promise;
-
         }
 
-    },
+    }, // method closed here
       watch: {
     '$route' (to, from) {
       /*f(from.path==='/base/test'){
@@ -134,7 +135,9 @@ methods:{
       }*/
 		this.filerender();
   }
-  },
+  }
+  , // watch closed here
+
 beforeDestroy: function(){
   }
 }
@@ -144,5 +147,6 @@ beforeDestroy: function(){
 .flimg{
   width:20%;
   height:20%;
+  cursor: pointer;
 }
 </style>

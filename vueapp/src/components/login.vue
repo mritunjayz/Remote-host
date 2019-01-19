@@ -59,7 +59,6 @@ axios.post(`http://localhost:8000/api/login`, {host:this.host,username:this.user
 mounted() {
   console.log(this.$store.state.islogged)
   document.getElementById("form").addEventListener("click", function(event){
-    console.log("inside")
   event.preventDefault()
 });
   if(this.$store.state.islogged){
