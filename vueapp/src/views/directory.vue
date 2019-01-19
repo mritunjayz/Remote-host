@@ -5,32 +5,32 @@
 
 
     <div class="row">
-    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-6])">
+    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-6])" v-if="datac[(index*6)-6]">
     <img v-if="typecheck(datac[(index*6)-6])" class="flimg" src="../assets/folders.png">
     <img v-else class="flimg" src="../assets/files.png">
     <h5>{{datac[(index*6)-6]}}</h5>
     </div>
-    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-5])"> 
+    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-5])" v-if="datac[(index*6)-5]"> 
         <img v-if="typecheck(datac[(index*6)-5])" class="flimg" src="../assets/folders.png">
     <img v-else class="flimg" src="../assets/files.png">
       <h5>{{datac[(index*6)-5]}}</h5>
     </div>
-    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-4])"> 
+    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-4])" v-if="datac[(index*6)-4]"> 
         <img v-if="typecheck(datac[(index*6)-4])" class="flimg" src="../assets/folders.png">
         <img v-else class="flimg" src="../assets/files.png">
       <h5>{{datac[(index*6)-4]}}</h5>
     </div>
-    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-3])">
+    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-3])" v-if="datac[(index*6)-3]">
         <img v-if="typecheck(datac[(index*6)-3])" class="flimg" src="../assets/folders.png">
         <img v-else class="flimg" src="../assets/files.png">
     <h5>{{datac[(index*6)-3]}}</h5>
     </div>
-    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-2])"> 
+    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-2])" v-if="datac[(index*6)-2]"> 
         <img v-if="typecheck(datac[(index*6)-2])" class="flimg" src="../assets/folders.png">
         <img v-else class="flimg" src="../assets/files.png">
       <h5>{{datac[(index*6)-2]}}</h5>
     </div>
-    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-1])"> 
+    <div class="col-sm-2" v-on:click="fileclicked(datac[(index*6)-1])" v-if="datac[(index*6)-1]"> 
         <img v-if="typecheck(datac[(index*6)-1])" class="flimg" src="../assets/folders.png">
         <img v-else class="flimg" src="../assets/files.png">
       <h5>{{datac[(index*6)-1]}}</h5>
