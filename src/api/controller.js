@@ -55,24 +55,33 @@ controller.directorylist = function (path) {
 
 controller.editorsave = function (data) {
     return new Promise ((resolve, reject) => {
-        fs.appendFile('./temp',data.filedata, function (err) {
+        fs.writeFile('./temp',data.filedata, function (err) {
             if (err) {
                 reject(err)
                 throw err;
             }
-            console.log('Saved!');
+            
 
-            ssh.putFiles([{ local: './temp', remote: data.path }]).then(function() {
-                console.log("The File thing is done")
-                resolve("edited file success")
+            ssh.putFiles([{ local: './temp', remote: data.path }]).then(function(r) {
+                
+                resolve("file edited done")
               }, function(error) {
-                console.log("Something's wrong")
-                console.log(error)
+                
                 reject(error);
               })
 
           });
     })
+}
+
+controller.terminal = function (cmd) {
+return new Promise ((resolve, reject) => {
+    ssh.execCommand('ls', { cwd:'/' }).then(function(result) {
+        console.log('STDOUT: ' + result.stdout)
+        console.log('STDERR: ' + result.stderr)
+        resolve(result.stdout)
+      })
+})
 }
 
 function ondirectory(path){

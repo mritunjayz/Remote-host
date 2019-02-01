@@ -1,149 +1,59 @@
-var requirejs, require, define;
-(function (global, setTimeout) {
-    var req, s, head, baseElement, dataMain, src,
-        interactiveScript, currentlyAddingScript, mainScript, subPath,
-        version = '2.3.6',
-        commentRegExp = /\/\*[\s\S]*?\*\/|([^:"'=]|^)\/\/.*$/mg,
-        cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
-        jsSuffixRegExp = /\.js$/,
-        currDirRegExp = /^\.\//,
-        op = Object.prototype,
-        ostring = op.toString,
-        hasOwn = op.hasOwnProperty,
-        isBrowser = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document),
-        isWebWorker = !isBrowser && typeof importScripts !== 'undefined'`,
-  a:'nnn',
-  length:''
+'use strict';
+
+const fs = require('fs');
+
+process.stdin.resume();
+process.stdin.setEncoding('utf-8');
+
+let inputString = '';
+let currentLine = 0;
+
+process.stdin.on('data', inputStdin => {
+    inputString += inputStdin;
+});
+
+process.stdin.on('end', _ => {
+    inputString = inputString.replace(/\s*$/, '')
+        .split('\n')
+        .map(str => str.replace(/\s*$/, ''));
+
+    main();
+});
+
+function readLine() {
+    return inputString[currentLine++];
 }
-},
-mounted (){
-this.filerender();
-},
-methods:{
-  typecheck(name){
-//temporary type check
-      if(name){
-        //console.log('typecheck:',name,name.indexOf("."),typeof(name))
-        let r = name.indexOf(".");
-        if(r===-1){
-             return true;
-                   }
-        else return false;
-                }
-        },
-        filerender(){
-          let s = '/' + this.$route.params.path;
-            axios.post('http://localhost:8000/api/list',{path:s}).then((res) => {
-              console.log(res.data)
-            this.datac = res.data.data;
-            this.length = this.datac.length;
-            this.length = this.length/6;
-            this.length = Math.ceil(this.length)
-          })
-           .catch(err =>{
-      
-             this.$store.dispatch('logout');
-             this.$router.push({ path: '/'})
-             //this.logout();
-             throw err
-            })
-        },
-        async fileclicked(subpath){
 
-          let promise = new Promise((resolve, reject) => {
-            console.log('fileclicked',subpath)
-        let sub = this.$route.params.path +subpath+'/'
-                    console.log('fileclicked',sub)
+// Complete the bfs function below.
+function bfs(n, m, edges, s) {
 
-       this.$router.push({ name: 'directory', params: { path: sub} })
-          this.filerender();
-          })
-           
-           await promise;
 
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const q = parseInt(readLine(), 10);
+
+    for (let qItr = 0; qItr < q; qItr++) {
+        const nm = readLine().split(' ');
+
+        const n = parseInt(nm[0], 10);
+
+        const m = parseInt(nm[1], 10);
+
+        let edges = Array(m);
+
+        for (let i = 0; i < m; i++) {
+            edges[i] = readLine().split(' ').map(edgesTemp => parseInt(edgesTemp, 10));
         }
 
-    },
-      watch: {
-    '$route' (to, from) {
-		this.filerender();
-  }
-  }
+        const s = parseInt(readLine(), 10);
 
+        let result = bfs(n, m, edges, s);
+
+        ws.write(result.join(" ") + "\n");
+    }
+
+    ws.end();
 }
-</script>
-var requirejs, require, define;
-(function (global, setTimeout) {
-    mritunjay goutam
-    var req, s, head, baseElement, dataMain, src,
-        interactiveScript, currentlyAddingScript, mainScript, subPath,
-        version = '2.3.6',
-        commentRegExp = /\/\*[\s\S]*?\*\/|([^:"'=]|^)\/\/.*$/mg,
-        cjsRequireRegExp = /[^.]\s*require\s*\(\s*["']([^'"\s]+)["']\s*\)/g,
-        jsSuffixRegExp = /\.js$/,
-        currDirRegExp = /^\.\//,
-        op = Object.prototype,
-        ostring = op.toString,
-        hasOwn = op.hasOwnProperty,
-        isBrowser = !!(typeof window !== 'undefined' && typeof navigator !== 'undefined' && window.document),
-        isWebWorker = !isBrowser && typeof importScripts !== 'undefined'`,
-  a:'nnn',
-  length:''
-}
-},
-mounted (){
-this.filerender();
-},
-methods:{
-  typecheck(name){
-//temporary type check
-      if(name){
-        //console.log('typecheck:',name,name.indexOf("."),typeof(name))
-        let r = name.indexOf(".");
-        if(r===-1){
-             return true;
-                   }
-        else return false;
-                }
-        },
-        filerender(){
-          let s = '/' + this.$route.params.path;
-            axios.post('http://localhost:8000/api/list',{path:s}).then((res) => {
-              console.log(res.data)
-            this.datac = res.data.data;
-            this.length = this.datac.length;
-            this.length = this.length/6;
-            this.length = Math.ceil(this.length)
-          })
-           .catch(err =>{
-      
-             this.$store.dispatch('logout');
-             this.$router.push({ path: '/'})
-             //this.logout();
-             throw err
-            })
-        },
-        async fileclicked(subpath){
-
-          let promise = new Promise((resolve, reject) => {
-            console.log('fileclicked',subpath)
-        let sub = this.$route.params.path +subpath+'/'
-                    console.log('fileclicked',sub)
-
-       this.$router.push({ name: 'directory', params: { path: sub} })
-          this.filerender();
-          })
-           
-           await promise;
-
-        }
-
-    },
-      watch: {
-    '$route' (to, from) {
-		this.filerender();
-  }
-  }
-
-}
-</script>

@@ -12,8 +12,9 @@
         Logged in as
       <span class="colour">{{$store.state.host}}</span></h3>
     </div>
-    <div class="col-sm-4 colour" @click='logout'> 
-      <h3 class="po">Logout</h3>
+    <div class="col-sm-4 colour"> 
+      <h3 class="po"><span @click='logout'>Logout </span>| Terminal</h3>
+      <terminal />
     </div>
   </div>
   <router-view/>
@@ -22,8 +23,12 @@
 
 <script>
 import axios from 'axios'
+import terminal from '../components/terminal.vue'
 
 export default {
+  components: {
+    terminal
+  },
   name: 'baseland',
   methods:{
     logout(){

@@ -4,6 +4,7 @@ import structure from './directoryroute.js'
 import login from './loginroute.js'
 import logout from './logoutroute.js'
 import editorsave from './editorsaveroute'
+import terminal from './terminalroute'
 
 
 export default ({ config, db }) => {
@@ -21,6 +22,8 @@ export default ({ config, db }) => {
 	api.use('/logout', logout)
 
 	api.use('/editorsave', editorsave)
+
+	api.use('/terminal', terminal)
 
 
 	return api;

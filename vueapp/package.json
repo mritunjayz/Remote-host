@@ -12,6 +12,7 @@
     "js-cookie": "^2.2.0",
     "vue": "^2.5.21",
     "vue-router": "^3.0.1",
+    "vue-terminal": "^1.0.1-beta",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"
   },
