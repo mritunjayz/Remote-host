@@ -15,7 +15,7 @@ var serveStatic = require('serve-static');
 var app = express();
 app.use(logger("dev"));
 //app.use(serveStatic(__dirname + "/vueapp/dist"));
-app.use(express.static(__dirname + '/dista'));
+app.use(express.static(__dirname + '/vueapp/dist'));
 app.get('/dd',function(req,res){
   res.send("goit")
 })
