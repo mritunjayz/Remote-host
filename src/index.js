@@ -8,7 +8,7 @@ import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
-//import '../vueserve.js'
+import '../vueserve.js'
 let app = express();
 app.server = http.createServer(app);
 
