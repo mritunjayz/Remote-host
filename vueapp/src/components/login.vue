@@ -12,7 +12,7 @@
     <input type="text" placeholder="Username" name="uname" v-model='username' required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="text" placeholder="Enter Password" name="psw" v-model='password' required>
+    <input type="text" placeholder="Enter Password Ex - '/home/username/key.pem'" name="psw" v-model='password' required>
         
     <button @click='login' >Login</button>
     <label>

@@ -3,9 +3,7 @@
 <div id="mydiv">
   <div id="mydivheader">Virtual Terminal</div>
   <div id="tbody">
-  <p>{{$store.state.host}}:~$</p>
-  <p>this</p>
-  <p>DIV</p>
+  <p>{{$store.state.host}}:~$   WIP ........</p>
   </div>
 </div>
 </div>

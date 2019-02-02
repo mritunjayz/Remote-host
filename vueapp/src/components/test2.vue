@@ -11,7 +11,7 @@
 
   <div style="margin-left:50%;margin-top:15%;">
   <div  style="background-color:blue;width:30%;">
-  <button @click="savetoremote" >Save</button>
+  <button @click="savetoremote" >{{btn}}</button>
   </div>
 <div  style="background-color:red;width:30%; margin-top :10px;">
   <button @click="cancel" >Cancel</button>
@@ -35,6 +35,7 @@ export default {
 
   data() {
     return {
+      btn:'Save',
       code:``,
     language: 'javascript',
     theme: 'Visual Studio Dark',
@@ -57,6 +58,7 @@ methods: {
       console.log(this.code)
       axios.post(`http://localhost:8000/api/editorsave`, {filedata:this.code,
       path:this.$store.state.previouspath}).then((data) => {
+        this.btn='Saved'
         console.log(data);
       }).catch((err) => {
         console.log(err);
