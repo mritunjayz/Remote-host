@@ -78,9 +78,11 @@ controller.download = function (path) {
 return new Promise ((resolve, reject) => {
       ssh.getFile(`${path}`, '/').then(function(Contents) {
         console.log("The File's contents were successfully downloaded")
+        resolve("downloaded")
       }, function(error) {
         console.log("Something's wrong")
         console.log(error)
+        reject(error)
       })
 })
 }
