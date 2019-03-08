@@ -74,15 +74,26 @@ controller.editorsave = function (data) {
     })
 }
 
-controller.terminal = function (cmd) {
+controller.download = function (path) {
 return new Promise ((resolve, reject) => {
-    ssh.execCommand('ls', { cwd:'/' }).then(function(result) {
-        console.log('STDOUT: ' + result.stdout)
-        console.log('STDERR: ' + result.stderr)
-        resolve(result.stdout)
+      ssh.getFile(`${path}`, '/').then(function(Contents) {
+        console.log("The File's contents were successfully downloaded")
+      }, function(error) {
+        console.log("Something's wrong")
+        console.log(error)
       })
 })
 }
+
+controller.terminal = function (cmd) {
+    return new Promise ((resolve, reject) => {
+        ssh.execCommand('ls', { cwd:'/' }).then(function(result) {
+            console.log('STDOUT: ' + result.stdout)
+            console.log('STDERR: ' + result.stderr)
+            resolve(result.stdout)
+          })
+    })
+    }
 
 function ondirectory(path){
     return new Promise ((resolve, reject) => {

@@ -23,13 +23,13 @@ app.get('/dd',function(req,res){
 //app.listen(port);
 //console.log('server started '+ port);
 
-var server = app.listen(port, ip, function() {
-  console.log('Express server listening on port ' + port);
-});
+/*var server = app.listen(port, ip, function() {
+  console.log('Open http://localhost:8001');
+});*/
 
-/*https.createServer({
+https.createServer({
   key: fs.readFileSync('server.key'),
   cert: fs.readFileSync('server.cert')
-}, app).listen(3000, () => {
+}, app).listen(8001, () => {
   console.log('Listening...')
-})*/
+})

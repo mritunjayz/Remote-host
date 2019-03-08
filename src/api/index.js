@@ -5,6 +5,7 @@ import login from './loginroute.js'
 import logout from './logoutroute.js'
 import editorsave from './editorsaveroute'
 import terminal from './terminalroute'
+import download from './download'
 
 
 export default ({ config, db }) => {
@@ -24,6 +25,8 @@ export default ({ config, db }) => {
 	api.use('/editorsave', editorsave)
 
 	api.use('/terminal', terminal)
+
+	api.use('/download', download)
 
 
 	return api;
