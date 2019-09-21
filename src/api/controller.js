@@ -12,8 +12,10 @@ let controller= {};
     username: logincredentials.username,
     privateKey:logincredentials.key
 }).then( function(data)  {
+    //console.log(data)
     resolve('logged')
 }).catch(err => {
+    //console.log(err,"error mohit")
     reject(err)
 })
 }) 

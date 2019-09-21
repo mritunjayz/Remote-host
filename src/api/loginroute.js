@@ -7,6 +7,7 @@ let router = express.Router();
 //let ssh = ssh_node()
 
 router.post('/',(req,res) =>{
+	console.log("login hited")
 controller.login({
 	host:req.body.host,
 	username:req.body.username,
