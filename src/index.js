@@ -33,7 +33,7 @@ app.use(
 );
 
 // Handle any top-level exceptions uncaught in the app.
-process.on("uncaughtException", function() {
+process.on("uncaughtException", function(err) {
   if (err.code === "EADDRINUSE") {
     // For now, do nothing when we are unable to start the http server.
     console.error("ERROR: server already running");
@@ -56,7 +56,7 @@ initializeDb(db => {
   // api router
   app.use("/api", api({ config, db }));
 
-  app.server.listen(process.env.PORT || config.port, () => {
+  app.server.listen(config.port, () => {
     console.log("starting vue-app");
     //sh.exec("node vueserve.js");
   });

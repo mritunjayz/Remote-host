@@ -13,10 +13,12 @@ controller.login({
 	username:req.body.username,
 	key:req.body.key
 }).then((data) => {
+	console.log(data, 'logged in')
 	res.send('logged')
 }).catch( err =>{
+	console.log(err, 'error log in')
 	res.status(401)
-	res.send(err)
+	res.send({err, checking: "error"})
 })
 })
 

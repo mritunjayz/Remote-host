@@ -19,7 +19,7 @@ app.use(express.static(__dirname + '/vueapp/dist'));
 app.get('/dd',function(req,res){
   res.send("goit")
 })
-var port = process.env.PORT || 8001;
+var port = 8001;
 app.listen(port);
 console.log('server started '+ port);
 

@@ -12,11 +12,11 @@ let controller= {};
     username: logincredentials.username,
     privateKey:logincredentials.key
 }).then( function(data)  {
-    //console.log(data)
-    resolve('logged')
+    console.log(data)
+    resolve('logged', data)
 }).catch(err => {
-    //console.log(err,"error mohit")
-    reject(err)
+    console.log(err,"error mohit")
+    reject(err, 'error')
 })
 }) 
 }
